@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.backratelimit.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.info.BuildProperties;

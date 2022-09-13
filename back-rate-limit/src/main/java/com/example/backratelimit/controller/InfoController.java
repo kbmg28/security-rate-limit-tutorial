@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.backratelimit.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.info.BuildProperties;
@@ -20,8 +20,4 @@ public class InfoController {
         return buildProperties.getVersion();
     }
 
-    @GetMapping("/j_security_check")
-    public String getVersion2() {
-        return buildProperties.getVersion();
-    }
 }
