@@ -20,6 +20,9 @@ public class JwtService {
     @Value("${secret-key-jwt}")
     private String secretKeyJwt;
 
+    @Value("${description-application}")
+    private String descriptionApplication;
+
     public String getJwtValidated(String authorization) {
 
         if (Strings.isBlank(authorization) || !authorization.startsWith("Bearer ")) {
@@ -63,7 +66,7 @@ public class JwtService {
 
     private String generateToken(LoginDTO loginDTO, Date startDate, Date expireDate) {
         return Jwts.builder()
-                .setIssuer("My application with Recaptcha v3 and Bucket4j")
+                .setIssuer(descriptionApplication)
                 .setSubject(UUID.randomUUID().toString()) // The subject can be of user id
                 .setIssuedAt(startDate)
                 .claim("email", loginDTO.getEmail())
