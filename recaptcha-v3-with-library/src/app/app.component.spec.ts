@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'recaptcha-v3-with-library'`, () => {
+  it(`should have as title 'angular-recaptcha-v3'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('recaptcha-v3-with-library');
+    expect(app.title).toEqual('angular-recaptcha-v3');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('recaptcha-v3-with-library app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('angular-recaptcha-v3 app is running!');
   });
 });
