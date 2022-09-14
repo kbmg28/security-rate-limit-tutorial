@@ -10,6 +10,8 @@ import lombok.Data;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -54,19 +56,19 @@ public class GoogleResponse {
     @JsonIgnore
     public boolean hasClientError() {
         final ErrorCode[] errors = getErrorCodes();
+
         if (errors == null) {
             return false;
         }
-        for (final ErrorCode error : errors) {
-            switch (error) {
-                case InvalidResponse:
-                case MissingResponse:
-                case BadRequest:
-                    return true;
-                default:
-                    break;
-            }
-        }
-        return false;
+
+        ErrorCode errorCode = Stream.of(errors)
+                .filter(Objects::nonNull)
+                .filter(error ->
+                    ErrorCode.InvalidResponse.equals(error) ||
+                    ErrorCode.MissingResponse.equals(error) ||
+                    ErrorCode.BadRequest.equals(error)
+        ).findFirst().orElse(null);
+
+        return errorCode != null;
     }
 }

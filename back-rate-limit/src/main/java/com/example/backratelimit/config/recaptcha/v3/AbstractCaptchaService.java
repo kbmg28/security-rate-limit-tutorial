@@ -1,6 +1,7 @@
 package com.example.backratelimit.config.recaptcha.v3;
 
 import com.example.backratelimit.exception.LockedClientException;
+import com.example.backratelimit.exception.RateLimitException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -40,8 +41,15 @@ public abstract class AbstractCaptchaService implements RecaptchaV3Service {
 
     protected void securityCheck(final String response) {
         log.debug("Attempting to validate response {}", response);
+        String clientIP = getClientIP();
+        boolean isSanitizedString = responseSanityCheck(response);
+        boolean isBlockedClientIp = recaptchaAttemptService.isBlocked(clientIP);
 
-        if (recaptchaAttemptService.isBlocked(getClientIP()) || !responseSanityCheck(response)) {
+        if (isBlockedClientIp) {
+            throw new RateLimitException();
+        }
+
+        if (!isSanitizedString) {
             throw new LockedClientException();
         }
 
