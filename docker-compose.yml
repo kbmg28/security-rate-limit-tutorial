@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  back:
+    build: ./back-rate-limit
+    environment:
+           - SERVER_PORT=8080
+    ports:
+           - "8080:8080" 
+    restart: always
+  front:
+    build: ./recaptcha-v3-with-library
+    links:
+           - "back"
+    depends_on:
+           - "back"
+    ports:
+           - "4000:4000" 
