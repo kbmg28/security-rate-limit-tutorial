@@ -38,8 +38,11 @@ dependencies {
 	// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
 	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
 
-//	swagger3
+	// swagger3
 	implementation "org.springdoc:springdoc-openapi-ui:1.5.13"
+
+	// https://mvnrepository.com/artifact/com.github.vladimir-bukhtoyarov/bucket4j-core
+	implementation 'com.github.vladimir-bukhtoyarov:bucket4j-core:7.6.0'
 }
 
 tasks.named('test') {
