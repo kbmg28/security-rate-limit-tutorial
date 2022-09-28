@@ -9,11 +9,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginVulnerableComponent } from './login-vulnerable/login-vulnerable.component';
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    LoginVulnerableComponent
   ],
   imports: [
     CommonModule,

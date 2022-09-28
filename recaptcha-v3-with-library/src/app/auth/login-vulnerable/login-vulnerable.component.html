@@ -1,0 +1,23 @@
+<div class="login-container">
+  <mat-card>
+    <form [formGroup]="loginForm" autocomplete="off">
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="test@exemplo.com" formControlName="email" required>
+        <mat-error *ngIf="email?.errors">{{getErrorEmailMessage()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Senha</mat-label>
+        <input matInput type="password" formControlName="password" required>
+        <mat-error *ngIf="password?.errors">Campo obrigatório</mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary"
+              class="blue-button"
+              type="submit"
+              [disabled]="!loginForm.valid"
+              (click) = "onSubmit()">
+        <span>Entrar</span>
+      </button>
+    </form>
+  </mat-card>
+</div>
