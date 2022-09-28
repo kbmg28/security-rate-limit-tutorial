@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
     const password = this.password?.value;
 
     this.reCaptchaV3Service.execute('login').subscribe(recaptchaToken => {
-      this.authControllerService.authenticateWithRecaptcha({email: email, pass: password}, recaptchaToken)
+      this.authControllerService.authenticateWithRecaptcha({email: email, password: password}, recaptchaToken)
       .subscribe(res => {
         sessionStorage.setItem('tokenJwt', res.token || '');
         this.router.navigate(["/home"]);
